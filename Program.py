@@ -221,96 +221,191 @@ reg_1a_vs_2_PctBudget = ols('y_1a_vs_2_PctBudget ~ postevent_1a_vs_2 + treatgrou
 reg_1a_vs_2_PctBudget.summary()
 
 #Difference in differences for Group 1a vs Group 3
-health_dataset_1a_vs_3 = health_dataset.drop(['groupOneB', 'groupOneC', 'groupThree', 'posteventtwo'], axis = 1)
-health_dataset_1a_vs_3.to_csv('Jan2016-June2017Final Data Set-1_Updated_Dataset_1a_vs_2.csv')
+health_dataset_1a_vs_3 = health_dataset.drop(['groupOneB', 'groupOneC', 'groupTwo', 'posteventone'], axis = 1)
+health_dataset_1a_vs_3.to_csv('Jan2016-June2017Final Data Set-1_Updated_Dataset_1a_vs_3.csv')
 
 #Assigning our independent variables for the regression
-postevent_1a_vs_2 = health_dataset_1a_vs_2['posteventone'].values
-treatgroup_1a_vs_2 = health_dataset_1a_vs_2['groupTwo'].values
+postevent_1a_vs_3 = health_dataset_1a_vs_3['posteventtwo'].values
+treatgroup_1a_vs_3 = health_dataset_1a_vs_3['groupThree'].values
 
 #For clinical parameters
 #Clinical Parameter 1: FiveStarAll
-y_1a_vs_2_FiveStarAll = health_dataset_1a_vs_2['FiveStarAll'].values
+y_1a_vs_3_FiveStarAll = health_dataset_1a_vs_3['FiveStarAll'].values
 
-reg_1a_vs_2_FiveStarAll = ols('y_1a_vs_2_FiveStarAll ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_FiveStarAll.summary()
+reg_1a_vs_3_FiveStarAll = ols('y_1a_vs_3_FiveStarAll ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_FiveStarAll.summary()
 
 #Clinical Parameter 2: FiveStarQuality
-y_1a_vs_2_FiveStarQuality = health_dataset_1a_vs_2['FiveStarQuality'].values
+y_1a_vs_3_FiveStarQuality = health_dataset_1a_vs_3['FiveStarQuality'].values
 
-reg_1a_vs_2_FiveStarQuality = ols('y_1a_vs_2_FiveStarQuality ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_FiveStarQuality.summary()
+reg_1a_vs_3_FiveStarQuality = ols('y_1a_vs_3_FiveStarQuality ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_FiveStarQuality.summary()
 
 #Clinical Parameter 3: ComplaintTagPCT
-y_1a_vs_2_ComplaintTagPCT = health_dataset_1a_vs_2['ComplaintTagPCT'].values
+y_1a_vs_3_ComplaintTagPCT = health_dataset_1a_vs_2['ComplaintTagPCT'].values
 
-reg_1a_vs_2_ComplaintTagPCT = ols('y_1a_vs_2_ComplaintTagPCT ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_ComplaintTagPCT.summary()
+reg_1a_vs_3_ComplaintTagPCT = ols('y_1a_vs_3_ComplaintTagPCT ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_ComplaintTagPCT.summary()
 
 #Clinical Parameter 4: FacilityDefIndex
-y_1a_vs_2_FacilityDefIndex = health_dataset_1a_vs_2['FacilityDefIndex'].values
+y_1a_vs_3_FacilityDefIndex = health_dataset_1a_vs_3['FacilityDefIndex'].values
 
-reg_1a_vs_2_FacilityDefIndex = ols('y_1a_vs_2_FacilityDefIndex ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_FacilityDefIndex.summary()
+reg_1a_vs_3_FacilityDefIndex = ols('y_1a_vs_3_FacilityDefIndex ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_2*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_FacilityDefIndex.summary()
 
 #Clinical Parameter 5: FailedRevtIndicator
-y_1a_vs_2_FailedRevtIndicator = health_dataset_1a_vs_2['FailedRevtIndicator'].values
+y_1a_vs_3_FailedRevtIndicator = health_dataset_1a_vs_3['FailedRevtIndicator'].values
 
-reg_1a_vs_2_FacilityDefIndex = ols('y_1a_vs_2_FailedRevtIndicator ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_FacilityDefIndex.summary()
+reg_1a_vs_3_FacilityDefIndex = ols('y_1a_vs_3_FailedRevtIndicator ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_FacilityDefIndex.summary()
 
 #Clinical Parameter 6: RTHPCT
-y_1a_vs_2_RTHPCT = health_dataset_1a_vs_2['RTHPCT'].values
+y_1a_vs_3_RTHPCT = health_dataset_1a_vs_3['RTHPCT'].values
 
-reg_1a_vs_2_RTHPCT = ols('y_1a_vs_2_RTHPCT ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_RTHPCT.summary()
+reg_1a_vs_3_RTHPCT = ols('y_1a_vs_3_RTHPCT ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_2', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_RTHPCT.summary()
 
 #For operational parameters
 #Operational Parameter 1: StaffRetRate
-y_1a_vs_2_StaffRetRate = health_dataset_1a_vs_2['StaffRetRate'].values
+y_1a_vs_3_StaffRetRate = health_dataset_1a_vs_3['StaffRetRate'].values
 
-reg_1a_vs_2_StaffRetRate = ols('y_1a_vs_2_StaffRetRate ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_StaffRetRate.summary()
+reg_1a_vs_3_StaffRetRate = ols('y_1a_vs_3_StaffRetRate ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_StaffRetRate.summary()
 
 #Operational Parameter 2: PctOT
-y_1a_vs_2_PctOT = health_dataset_1a_vs_2['PctOT'].values
+y_1a_vs_3_PctOT = health_dataset_1a_vs_3['PctOT'].values
 
-reg_1a_vs_2_PctOT = ols('y_1a_vs_2_PctOT ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_PctOT.summary()
+reg_1a_vs_3_PctOT = ols('y_1a_vs_3_PctOT ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_PctOT.summary()
 
 #Operational Parameter 3: TotTurnoverPct
-y_1a_vs_2_TotTurnoverPct = health_dataset_1a_vs_2['TotTurnoverPct'].values
+y_1a_vs_3_TotTurnoverPct = health_dataset_1a_vs_3['TotTurnoverPct'].values
 
-reg_1a_vs_2_TotTurnoverPct = ols('y_1a_vs_2_TotTurnoverPct ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_TotTurnoverPct.summary()
+reg_1a_vs_3_TotTurnoverPct = ols('y_1a_vs_3_TotTurnoverPct ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_TotTurnoverPct.summary()
 
 #Operational Parameter 4: Engaged
-y_1a_vs_2_Engaged = health_dataset_1a_vs_2['Engaged'].values
+y_1a_vs_3_Engaged = health_dataset_1a_vs_3['Engaged'].values
 
-reg_1a_vs_2_Engaged = ols('y_1a_vs_2_Engaged ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_Engaged.summary()
+reg_1a_vs_3_Engaged = ols('y_1a_vs_3_Engaged ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_Engaged.summary()
 
 #For financial parameters
 #Financial Parameter 1: ADCPct
-y_1a_vs_2_ADCPct = health_dataset_1a_vs_2['ADCPct'].values
+y_1a_vs_3_ADCPct = health_dataset_1a_vs_3['ADCPct'].values
 
-reg_1a_vs_2_ADCPct = ols('y_1a_vs_2_ADCPct ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_ADCPct.summary()
+reg_1a_vs_3_ADCPct = ols('y_1a_vs_3_ADCPct ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_ADCPct.summary()
 
 #Financial Parameter 2: BDebtPct
-y_1a_vs_2_BDebtPct = health_dataset_1a_vs_2['BDebtPct'].values
+y_1a_vs_3_BDebtPct = health_dataset_1a_vs_3['BDebtPct'].values
 
-reg_1a_vs_2_BDebtPct = ols('y_1a_vs_2_BDebtPct ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_BDebtPct.summary()
+reg_1a_vs_3_BDebtPct = ols('y_1a_vs_3_BDebtPct ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_BDebtPct.summary()
 
 #Financial Parameter 3: SkilledPctMix
-y_1a_vs_2_SkilledPctMix = health_dataset_1a_vs_2['SkilledPctMix'].values
+y_1a_vs_3_SkilledPctMix = health_dataset_1a_vs_3['SkilledPctMix'].values
 
-reg_1a_vs_2_SkilledPctMix = ols('y_1a_vs_2_SkilledPctMix ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_SkilledPctMix.summary()
+reg_1a_vs_3_SkilledPctMix = ols('y_1a_vs_3_SkilledPctMix ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_SkilledPctMix.summary()
 
 #Financial Parameter 4: PctBudget
-y_1a_vs_2_PctBudget = health_dataset_1a_vs_2['PctBudget'].values
+y_1a_vs_3_PctBudget = health_dataset_1a_vs_3['PctBudget'].values
 
-reg_1a_vs_2_PctBudget = ols('y_1a_vs_2_PctBudget ~ postevent_1a_vs_2 + treatgroup_1a_vs_2 + postevent_1a_vs_2*treatgroup_1a_vs_2', data = health_dataset_1a_vs_2).fit()
-reg_1a_vs_2_PctBudget.summary()
+reg_1a_vs_3_PctBudget = ols('y_1a_vs_3_PctBudget ~ postevent_1a_vs_3 + treatgroup_1a_vs_3 + postevent_1a_vs_3*treatgroup_1a_vs_3', data = health_dataset_1a_vs_3).fit()
+reg_1a_vs_3_PctBudget.summary()
+
+##Difference in differences for Group 2 vs Group 3
+#health_dataset_2_vs_3 = health_dataset.drop(['groupOneB', 'groupOneB', 'groupOneC', 'posteventone'], axis = 1)
+#health_dataset_2_vs_3.to_csv('Jan2016-June2017Final Data Set-1_Updated_Dataset_2_vs_3.csv')
+#
+##Assigning our independent variables for the regression
+#postevent_2_vs_3 = health_dataset_2_vs_3['posteventtwo'].values
+#treatgroup_2_vs_3 = health_dataset_2_vs_3['groupThree'].values
+#
+##For clinical parameters
+##Clinical Parameter 1: FiveStarAll
+#y_2_vs_3_FiveStarAll = health_dataset_2_vs_3['FiveStarAll'].values
+#
+#reg_2_vs_3_FiveStarAll = ols('y_2_vs_3_FiveStarAll ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_FiveStarAll.summary()
+#
+##Clinical Parameter 2: FiveStarQuality
+#y_2_vs_3_FiveStarQuality = health_dataset_1a_vs_3['FiveStarQuality'].values
+#
+#reg_2_vs_3_FiveStarQuality = ols('y_2_vs_3_FiveStarQuality ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_FiveStarQuality.summary()
+#
+##Clinical Parameter 3: ComplaintTagPCT
+#y_2_vs_3_ComplaintTagPCT = health_dataset_2_vs_3['ComplaintTagPCT'].values
+#
+#reg_2_vs_3_ComplaintTagPCT = ols('y_2_vs_3_ComplaintTagPCT ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_ComplaintTagPCT.summary()
+#
+##Clinical Parameter 4: FacilityDefIndex
+#y_2_vs_3_FacilityDefIndex = health_dataset_2_vs_3['FacilityDefIndex'].values
+#
+#reg_2_vs_3_FacilityDefIndex = ols('y_2_vs_3_FacilityDefIndex ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_2*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_FacilityDefIndex.summary()
+#
+##Clinical Parameter 5: FailedRevtIndicator
+#y_2_vs_3_FailedRevtIndicator = health_dataset_2_vs_3['FailedRevtIndicator'].values
+#
+#reg_2_vs_3_FacilityDefIndex = ols('y_2_vs_3_FailedRevtIndicator ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_FacilityDefIndex.summary()
+#
+##Clinical Parameter 6: RTHPCT
+#y_2_vs_3_RTHPCT = health_dataset_1a_vs_3['RTHPCT'].values
+#
+#reg_2_vs_3_RTHPCT = ols('y_2_vs_3_RTHPCT ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_2', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_RTHPCT.summary()
+#
+##For operational parameters
+##Operational Parameter 1: StaffRetRate
+#y_2_vs_3_StaffRetRate = health_dataset_2_vs_3['StaffRetRate'].values
+#
+#reg_2_vs_3_StaffRetRate = ols('y_2_vs_3_StaffRetRate ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_StaffRetRate.summary()
+#
+##Operational Parameter 2: PctOT
+#y_2_vs_3_PctOT = health_dataset_2_vs_3['PctOT'].values
+#
+#reg_2_vs_3_PctOT = ols('y_2_vs_3_PctOT ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_PctOT.summary()
+#
+##Operational Parameter 3: TotTurnoverPct
+#y_2_vs_3_TotTurnoverPct = health_dataset_2_vs_3['TotTurnoverPct'].values
+#
+#reg_2_vs_3_TotTurnoverPct = ols('y_2_vs_3_TotTurnoverPct ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_TotTurnoverPct.summary()
+#
+##Operational Parameter 4: Engaged
+#y_2_vs_3_Engaged = health_dataset_2_vs_3['Engaged'].values
+#
+#reg_2_vs_3_Engaged = ols('y_2_vs_3_Engaged ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_Engaged.summary()
+#
+##For financial parameters
+##Financial Parameter 1: ADCPct
+#y_2_vs_3_ADCPct = health_dataset_2_vs_3['ADCPct'].values
+#
+#reg_2_vs_3_ADCPct = ols('y_2_vs_3_ADCPct ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_ADCPct.summary()
+#
+##Financial Parameter 2: BDebtPct
+#y_2_vs_3_BDebtPct = health_dataset_2_vs_3['BDebtPct'].values
+#
+#reg_2_vs_3_BDebtPct = ols('y_2_vs_3_BDebtPct ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_BDebtPct.summary()
+#
+##Financial Parameter 3: SkilledPctMix
+#y_2_vs_3_SkilledPctMix = health_dataset_2_vs_3['SkilledPctMix'].values
+#
+#reg_2_vs_3_SkilledPctMix = ols('y_2_vs_3_SkilledPctMix ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_SkilledPctMix.summary()
+#
+##Financial Parameter 4: PctBudget
+#y_2_vs_3_PctBudget = health_dataset_2_vs_3['PctBudget'].values
+#
+#reg_2_vs_3_PctBudget = ols('y_2_vs_3_PctBudget ~ postevent_2_vs_3 + treatgroup_2_vs_3 + postevent_2_vs_3*treatgroup_2_vs_3', data = health_dataset_2_vs_3).fit()
+#reg_2_vs_3_PctBudget.summary()
